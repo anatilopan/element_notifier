@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "Element Notifier",
+    "version": "0.0.1",
+    "description": "Monitors for the appearance of a specific html blocks inside chrome tabs.",
+    "permissions": ["tabs", "notifications", "storage", "scripting"],
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhIMlbYPBK59+J01HdbxY7tAgVHFAxFSc+YTWKvGw93qS9LMH3yRLb+8rUUvGcTWGe2hHgqcjfcb6ubugWFWjpJFtjpI7/0v8Mm2tp5jzelqSTQOANtTCIoyomwxHjEJj9XWZkpI56QrCs6zsiYBaxjvSiUS1xWUqRtg0QmeVdHBdY8itvPNyNF5WuVk/bdbeDJUQ6anDEr9XziYNtRQ9k2v6uneg2TRA81eI1MsAFJWfr6LKMTOijfVXYSJgfGGdKAGa2UM6Qh6TklrV9RrAYPAhsz28Lg619r71ZZI8p1O/SHfJUE+MPkzLmSm03QskASghYrAktOOG3x3E1ZbSfQIDAQAB",
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+      }
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "host_permissions": ["https://*/*", "file://*"],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ]
+  }

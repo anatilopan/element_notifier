@@ -1,0 +1,46 @@
+html {
+  font-size: 5pt;
+}
+
+.containerpop {
+  width: 400px;
+  margin: 0px auto;
+}
+
+.overflow-h {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.wordwrap {
+  word-wrap: break-word;
+}
+
+.a-title {
+  text-align: center;
+  font-style: italic;
+  font-weight: 700;
+}
+.c-label {
+  text-align: center;
+  align-self: center;
+}
+.t-label {
+  text-align: right;
+}
+.r-separator {
+margin-bottom: 1rem;
+}
+
+.tiny {
+  font-family: "ＭＳ Ｐゴシック";
+  /* font-family: courier; */
+  font-size: 8pt;
+  padding: 0.3rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  /* text-shadow: 1px 1px 0 rgb(223, 227, 229), 1px 1px 0 rgba(0, 0, 0, 0.25); */
+  color: #8d979f81;
+  margin-bottom: 0;
+}

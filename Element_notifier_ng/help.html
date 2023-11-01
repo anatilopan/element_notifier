@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Element Notifier Help page</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="milligram.min.css">
+    <link rel="stylesheet" href="custom.css">
+</head>
+
+<body>
+    <main class="wrapper">
+        <section class="container c-label">
+            <h1>Element Notifier Help Page</h1>
+        </section>
+
+        <section class="container" id="contentTable">
+            <h3 class="title">Content Table</h3>
+            <hr />
+            <div class="row">
+                <div class="column a-title t-label">
+                    <a href="#starting">1. Intro:</a>
+                </div>
+                <div class="column">
+                    <ul>
+                        <li><a href="#open-popup">Accesing the extension</a></li>
+                        <li><a href="#what-it-does">What does ths button do?</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column a-title t-label">
+                    <a href="#running-it">2. Running it</a>
+                </div>
+                <div class="column">
+                    <ul>
+                        <li><a href="#what_it_does">Monitoring a Tab</a></li>
+                        <li><a href="#what_it_does">Stoping the monitoring</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column a-title t-label">
+                    <a href="typesofelements">2. Types of elements to be verified:</a>
+                </div>
+                <div class="column">
+                    <p>
+                        What are and how to use different types of elements in order to find specific items on monitored
+                        pages;
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column a-title t-label">
+                    <a href="troubleshooting">3. Troubleshooting and narrowing down the items found:</a>
+                </div>
+                <div class="column">
+                    <p>
+                        Steps to troubleshoot and refine your monitoring elements;
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column a-title t-label">
+                    <a href="selectorgen">4. Selector generator (alpha state):</a>
+                </div>
+                <div class="column">
+                    <p>
+                        Simple baked in tool to help you out creating a selector element;
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="intro">
+            <h2 class="title">Intro</h2>
+            <hr />
+            <div class="row">
+                <div class="column">
+                    <p>This is a simple tool to check a page if an element exsists or appears and if so, it will
+                        send a notification using the OS notification system.</p>
+                </div>
+            </div>
+            <div class="row r-separator">
+                <div class="column column-60" id="open-popup">
+                    <p>When you first access the extension, the icon is hidden under the "Extensions" button ont the
+                        browser toolbar (as highlited in the agissant image) </p>
+                    <p>You can now if you wish, <b>click</b> on the pin icon in order to stick the extension on the
+                        toolbar or <i>(left)</i> <b>click</b> the <img src="icon.png" height="16px"> icon in order
+                        to access the user intervace (UI) of the extension.</p>
+                </div>
+                <div class="column">
+                    <img class="float-right" src="images/extensions_btn.jpg" alt="Google Chrome Extension button"
+                        title="Google Chrome Extension button">
+                </div>
+            </div>
+
+            <div class="row r-separator">
+                <div class="column" id="what-it-does">
+                    <p>The following list will tell you what each element of the UI does:</p>
+                    <ol>
+                        <li id="url_btn">"<b>Add/Remove Current URL</b>" button will add the active tab URL into the
+                            monitoring
+                            list. Clicking it again, will remove the URL if you are on the same page as the URL.
+                        </li>
+                        <li id="attibute_field">"<b>Attribute field</b>" is where you have to add the element type you
+                            want to check for
+                            (i.g. class, id, [custom attibute]...).</li>
+                        <li id="value_field">"<b>Value field</b>" must contain the value of the type/attribute put in
+                            <b>Attribute
+                                field</b> (i.e. for a div element with class="column", you insert <i>column</i>).
+                        </li>
+                        <li id="add_btn">"<b>Add</b>" button will append the entries of <b>Atribute</b> and <b>Value</b>
+                            fields
+                            into the elements to track list. (Note: If you try to add the same combination of
+                            <b>Atribute</b> and <b>Value</b> twice, the entries will be removed from the list.
+                        </li>
+                        <li id="timer_btn">"<b>Timer field</b>" and "<b>Set button</b>" sets the frequency of the
+                            monitoring
+                            cycles. There is a minimum of 60 and a maximum of 900 seconds (1 - 15 minutes).</li>
+                        <li id="remove_btn">"<b>Remove button</b>" will remove it's associated item (i.e. for
+                            <b>Attribute/Value</b>
+                            entris, will delete the gruop of two)</li>
+                        <li id="help_btn">"<b>Help button</b>" will open a new tab displaying this page.</li>
+                    </ol>
+                </div>
+                <div class="column">
+                    <img class="float-right" src="images/extensionUI_numbered.png" alt="Element Notifier Initial UI"
+                        title="Element Notifier Initial UI">
+                </div>
+            </div>
+
+        </section>
+        <section class="container" id="running-it">
+            <h3 class="title">Running it</h3>
+            <hr />
+            <div class="" id="finding-the-attibute">
+                <h4>Finding the attribute</h4>
+                <p>Before starting to check for stuff, you need to know what to search for. In general there are two
+                    ways to gather information:</p>
+                <li>You ask for it; - If you can, I strongly recommend you to ask arround if someone already has the
+                    attribute - value entries for what you want to monitor.</li>
+                <li>You search it; - This is what we will do in this section.</li>
+                <p>There are two ways that you can gather the attribute you need and it's value.</p>
+                <h5>Browser Dev tools</h5>
+                <div class="row r-separator">
+                    <div class="column">
+                        <ol>
+                            <li>Go to the page you want to monitor.</li>
+                            <li>Press <b>F12</b> key on the keyboard to open the Development Tool in your browser.</li>
+                            <li>Click on selection tool in the Development tool.</li>
+                            <li>Select the object (element) you want to find on the page you want to monitor.</li>
+                            <li>In Delevopment Tool, check the attributes for the object you selected and try to find unique items.</li>
+                            <li>In Development Tool, press <i>ctrl+f</i> to make the find bar appear.</li>
+                            <li>Search the attribute you think is unique and check if there are more objects (elements) on that page.</li>
+                            <li>If the found element(s) is the one that you want, add them to the extension <a href="#attibute_field"><b>Attribute</b></a> and <a href="#attibute_field"><b>Value</b></a> fields.</li>
+                            <li>If not, try other combinations and other types of attibutes</li>
+                        </ol>
+                    </div>
+                </div>
+                <h5>Selector tool (alpha state!)</h5>
+                <div class="row r-separator">
+                    <div class="column">
+                        <ol>
+                            <li>Go to the page you want to monitor.</li>
+                            <li>Press <b>ctrl+shift+E</b> keys on the keyboard to start the selector tool from the EM extension. If you hover on different elements of the website, a red outline will appear.</li>
+                            <li>When you found the element you want, click on it.</li>
+                            <li>Select the object (element) you want to find on the page you want to monitor.</li>
+                            <li>In Delevopment Tool, check the attributes for the object you selected and try to find unique items.</li>
+                            <li>In Development Tool, press <i>ctrl+f</i> to make the find bar appear.</li>
+                            <li>Search the attribute you think is unique and check if there are more objects (elements) on that page.</li>
+                            <li>If the found element(s) is the one that you want, add them to the extension <a href="#attibute_field"><b>Attribute</b></a> and <a href="#attibute_field"><b>Value</b></a> fields.</li>
+                            <li>If not, try other combinations and other types of attibutes</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="do-it">
+                <h4 class="title">Do it</h4>
+                <blockquote>Important note: If you don't know how to get the attibute and it's value for the next
+                    section, please check <a href="finding-the-attibute"><i>Finding the element</i> section</a> before
+                    going forward.</blockquote>
+                <div class="row r-separator">
+                    <div class="column">
+                        <p>In order to set up a monitor you have to:</p>
+                        <ol>
+                            <li id="how-to-step_1">Open a Tab with the desiered page (or if you already have it open,
+                                make the tab active);</li>
+                            <li id="how-to-step_2">Open the extension <a href="#open-popup">popup</a>;</li>
+                            <li id="how-to-step_3">Click on <a href="#url_btn"><b>Add/Remove current URL</b></a> button;
+                            </li>
+                            <li id="how-to-step_4">Add the attribute of the element you want to monitor in <a
+                                    href="attribute_field"><b>Attribute field</b></a>;</li>
+                            <li id="how-to-step_5">Add the value of the attrubute you want to monitor in <a
+                                    href="value_field"><b>Value field</b></a>;</li>
+                            <li id="how-to-step_6">CLick on <a href="#add_btn"><b>Add</b> button</a></li>
+                        </ol>
+                    </div>
+                    <div class="column">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <section class="container">
+                <p>
+                    Developed by
+                    <a target="blank" href="https://aphios.ro/joe" title="CJ Patoilo">Robert Stan</a>.
+                </p>
+            </section>
+        </footer>
+    </main>
+</body>
+
+</html>
+
+<!-- 
+    for hoyo queue:
+    HTML > BODY > DIV#root > DIV.home > DIV.home__content > DIV.audit-business > DIV.main > DIV.queue > DIV.queue-body > DIV.audit-area > DIV.infoLayout-wrapper.info > DIV.order__unit.order
+ -->

@@ -4,7 +4,8 @@
     "version": "1.0.0",
     "description": "Monitors for the appearance of a specific html blocks inside tabs.",
     "permissions": ["tabs", "notifications", "storage", "scripting"],
-    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhIMlbYPBK59+J01HdbxY7tAgVHFAxFSc+YTWKvGw93qS9LMH3yRLb+8rUUvGcTWGe2hHgqcjfcb6ubugWFWjpJFtjpI7/0v8Mm2tp5jzelqSTQOANtTCIoyomwxHjEJj9XWZkpI56QrCs6zsiYBaxjvSiUS1xWUqRtg0QmeVdHBdY8itvPNyNF5WuVk/bdbeDJUQ6anDEr9XziYNtRQ9k2v6uneg2TRA81eI1MsAFJWfr6LKMTOijfVXYSJgfGGdKAGa2UM6Qh6TklrV9RrAYPAhsz28Lg619r71ZZI8p1O/SHfJUE+MPkzLmSm03QskASghYrAktOOG3x3E1ZbSfQIDAQAB",
+    "update_url": "http://10.226.202.201/Element_Monitor_NG/update.xml",
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuiFgZVUCYQH0IPQ+++NoICcy81lDYt0GWARqnF97KonTO0kHOT93Rce7gXrGh8upEIuYaSxP9kdmoRZwpAdiyJtTHBqzYOKRG1AsvBWpSKTSaNcHbon1Iz1jci5lJ/NyQP9RWb8ZnPQnHHre5FU+hWsUlqYEtLgw+bh6TxhXBScp5KJ32mRy/6ZM2jp9o/1ahIW6L6H9h3DlNNT98WQn54/4vjTrYnL1BOEyFLdTFSp3PCDEf2dIyRuy+9SC7OD3SOnac2bGtpZfhCGmw/CT2HRoRXOlPdT4PhHyXkzOFo6T1pHnv3t7pNl5Nelko2Q1aUaBwFKMllxybTCb53VdDQIDAQAB",
     "action": {
       "default_popup": "popup.html",
       "text": "",

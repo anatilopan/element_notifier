@@ -34,14 +34,14 @@
                 </div>
                 <div class="column">
                     <ul>
-                        <li><a href="#what_it_does">Monitoring a Tab</a></li>
-                        <li><a href="#what_it_does">Stoping the monitoring</a></li>
+                        <li><a href="#finding-the-attibute">Finding the attribute</a></li>
+                        <li><a href="#do-it">Do it (starting the monitoring)</a></li>
                     </ul>
                 </div>
             </div>
             <div class="row">
                 <div class="column a-title t-label">
-                    <a href="typesofelements">2. Types of elements to be verified:</a>
+                    <a href="#">3. Types of elements to be verified:</a>
                 </div>
                 <div class="column">
                     <p>
@@ -52,7 +52,7 @@
             </div>
             <div class="row">
                 <div class="column a-title t-label">
-                    <a href="troubleshooting">3. Troubleshooting and narrowing down the items found:</a>
+                    <a href="#">4. Troubleshooting and narrowing down the items found:</a>
                 </div>
                 <div class="column">
                     <p>
@@ -62,7 +62,7 @@
             </div>
             <div class="row">
                 <div class="column a-title t-label">
-                    <a href="selectorgen">4. Selector generator (alpha state):</a>
+                    <a href="#selectorgen">5. Selector generator (alpha state):</a>
                 </div>
                 <div class="column">
                     <p>
@@ -120,7 +120,8 @@
                             cycles. There is a minimum of 60 and a maximum of 900 seconds (1 - 15 minutes).</li>
                         <li id="remove_btn">"<b>Remove button</b>" will remove it's associated item (i.e. for
                             <b>Attribute/Value</b>
-                            entris, will delete the gruop of two)</li>
+                            entris, will delete the gruop of two)
+                        </li>
                         <li id="help_btn">"<b>Help button</b>" will open a new tab displaying this page.</li>
                     </ol>
                 </div>
@@ -150,27 +151,35 @@
                             <li>Press <b>F12</b> key on the keyboard to open the Development Tool in your browser.</li>
                             <li>Click on selection tool in the Development tool.</li>
                             <li>Select the object (element) you want to find on the page you want to monitor.</li>
-                            <li>In Delevopment Tool, check the attributes for the object you selected and try to find unique items.</li>
+                            <li>In Delevopment Tool, check the attributes for the object you selected and try to find
+                                unique items.</li>
                             <li>In Development Tool, press <i>ctrl+f</i> to make the find bar appear.</li>
-                            <li>Search the attribute you think is unique and check if there are more objects (elements) on that page.</li>
-                            <li>If the found element(s) is the one that you want, add them to the extension <a href="#attibute_field"><b>Attribute</b></a> and <a href="#attibute_field"><b>Value</b></a> fields.</li>
+                            <li>Search the attribute you think is unique and check if there are more objects (elements)
+                                on that page.</li>
+                            <li>If the found element(s) is the one that you want, add them to the extension <a
+                                    href="#attibute_field"><b>Attribute</b></a> and <a
+                                    href="#attibute_field"><b>Value</b></a> fields.</li>
                             <li>If not, try other combinations and other types of attibutes</li>
                         </ol>
                     </div>
                 </div>
-                <h5>Selector tool (alpha state!)</h5>
+                <h5 id="selectorgen">Selector tool (alpha state!)</h5>
                 <div class="row r-separator">
                     <div class="column">
                         <ol>
                             <li>Go to the page you want to monitor.</li>
-                            <li>Press <b>ctrl+shift+E</b> keys on the keyboard to start the selector tool from the EM extension. If you hover on different elements of the website, a red outline will appear.</li>
-                            <li>When you found the element you want, click on it.</li>
-                            <li>Select the object (element) you want to find on the page you want to monitor.</li>
-                            <li>In Delevopment Tool, check the attributes for the object you selected and try to find unique items.</li>
-                            <li>In Development Tool, press <i>ctrl+f</i> to make the find bar appear.</li>
-                            <li>Search the attribute you think is unique and check if there are more objects (elements) on that page.</li>
-                            <li>If the found element(s) is the one that you want, add them to the extension <a href="#attibute_field"><b>Attribute</b></a> and <a href="#attibute_field"><b>Value</b></a> fields.</li>
-                            <li>If not, try other combinations and other types of attibutes</li>
+                            <li>Press <b>ctrl+shift+E</b> keys on the keyboard to start the selector tool from the EM
+                                extension. If you hover on different elements of the website, a red outline will appear.
+                            </li>
+                            <li>When you found the element you want, click on it. A popup will appear with a selector.
+                            </li>
+                            <li>Copy the selector and click ok.</li>
+                            <li>Optional but prefered: In Delevopment Tool, <i>ctrl+f</i> and paste the selector. It
+                                will find the object and you can adjust it easier.</li>
+                            <li>In the <a href="#attribute_field"><b>Attribute field</b> in extension popup, add the
+                                    word "selector".</a></li>
+                            <li>In the <a href="#value_field"><b>Value field</b> in extension popup, add the selector
+                                    from the step 4 (or 5).</a></li>
                         </ol>
                     </div>
                 </div>
@@ -194,10 +203,16 @@
                             <li id="how-to-step_5">Add the value of the attrubute you want to monitor in <a
                                     href="value_field"><b>Value field</b></a>;</li>
                             <li id="how-to-step_6">CLick on <a href="#add_btn"><b>Add</b> button</a></li>
+                            <li id="how-to-step_6">Swich to another tab or window and keep the tab not focused. Do not
+                                close the tab.</li>
+                            <p> That's it! As long as the page is not focused (active), the extension will check for the
+                                elements you set. Whenever an element is found, a notification (as the agissant image
+                                shows) will pop up in your notifcation center.</p>
                         </ol>
                     </div>
                     <div class="column">
-
+                        <img class="float-right" src="images/notification.png" alt="Element Notifier - Notification example"
+                        title="Element Notifier - Notification example">
                     </div>
                 </div>
             </div>

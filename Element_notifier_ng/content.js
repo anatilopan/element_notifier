@@ -1,15 +1,7 @@
-// Check if tabs have the page url in storage list
-
-// If not:
-// 1. Send a notification to the workstation that the page is monitored
-// 2. Start a timer (60 seconds)
-// 3. Refresh the page
-// 4. Check if the page loaded fully
-// 4.1 Check if page contain specific key and values from the popup
-
 let currentURL = window.location.href;
 let selectToFind = false;
-let selectedElement;
+let selectedElement = null;
+// let selectedElement;
 let checked = false;
 let secondsToWait = 60;
 (async () => {
@@ -17,14 +9,16 @@ let secondsToWait = 60;
 })
 let delaytime = secondsToWait * 1000;
 
-
-
 async function toggleSelectToFind() {
-  selectedElement = undefined;
   selectToFind = !selectToFind;
-  const response = await chrome.runtime.sendMessage({
-    type: "selectbadge",
-    selector: selectToFind,
+  const response = await sendMessage("selectbadge", selectToFind);
+}
+
+function sendMessage(type, selector) {
+  return new Promise((resolve) => {
+    chrome.runtime.sendMessage({ type, selector }, (response) => {
+      resolve(response);
+    });
   });
 }
 
@@ -65,35 +59,31 @@ function isParent(parent, child) {
 var parents = [];
 var children = [];
 
-// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-//   if (request.action === "reload") {
-//   window.location.reload();
-//   }
-// });
-
 async function checkPage() {
   const response = await chrome.runtime.sendMessage({
     type: "trigger",
     validateTab: currentURL,
   });
-  var elements = [];
-  waitForPageToLoad(function () {
+
+  if (response.attrs && Array.isArray(response.attrs)) {
     const attrs = response.attrs;
-    const elements = []; // Create an array to store the matching elements
-    const foundElements = []; // Create an array to store the found elements
-    let selector = "";
+    const foundElements = [];
+
     for (const attr of attrs) {
+      let selector;
       if (attr.attrKey === "selector") {
-        selector = `${attr.attrValue}`;
+        selector = attr.attrValue;
       } else {
         selector = `[${attr.attrKey}='${attr.attrValue}']`;
       }
 
       const matchingElements = document.querySelectorAll(selector);
-      if (matchingElements.length > 0) {
+      const numElements = matchingElements.length;
+
+      if (numElements > 0) {
         (async () => {
-          const datenow = Date.now()
-          const msgtxt = `${matchingElements.length} elements were found on ${currentURL}`
+          const datenow = Date.now();
+          const msgtxt = `${numElements} elements were found on ${currentURL}`;
           const response = await chrome.runtime.sendMessage({
             type: "notification",
             notid: datenow.toString(),
@@ -103,47 +93,50 @@ async function checkPage() {
         })();
       }
     }
-  });
+  }
+
   setTimeout(runningPage, delaytime);
 }
 
-// checkPage();
-// Page is refreshed even if is not on the monitor list anymore...
 async function runningPage() {
   const response = await chrome.runtime.sendMessage({
     type: "trigger",
     validateTab: currentURL,
   });
-  // if page is validated adn not active
+
   if (response.validateTab && !response.tabstatus) {
-    // refresh page
-    window.location.reload();
+    // Refresh the page using a Promise-based approach for reliability.
+    await new Promise((resolve) => {
+      window.location.reload();
+      resolve();
+    });
   } else {
-    setTimeout(runningPage, delaytime);
+    // Use a setTimeout with an arrow function for better readability.
+    setTimeout(() => runningPage(), delaytime);
   }
+}
+
+function generateQuerySelector(el) {
+  if (el.tagName.toLowerCase() === "html") return "HTML";
+  let str = el.tagName;
+  str += el.id ? `#${el.id}` : "";
+  if (el.className) {
+    const classes = el.className.split(/\s/);
+    str += classes.map((cls) => `.${cls}`).join("");
+  }
+  return el.parentNode !== null ? generateQuerySelector(el.parentNode) + " > " + str : str;
 }
 
 function handleElementHover(event) {
   if (selectToFind) {
     if (selectedElement) {
-      var generateQuerySelector = function (el) {
-        if (el.tagName.toLowerCase() == "html") return "HTML";
-        var str = el.tagName;
-        str += el.id != "" ? "#" + el.id : "";
-        if (el.className) {
-          var classes = el.className.split(/\s/);
-          for (var i = 0; i < classes.length; i++) {
-            str += "." + classes[i];
-          }
-        }
-        return generateQuerySelector(el.parentNode) + " > " + str;
-      };
-      var qStr = generateQuerySelector(selectedElement);
+      const qStr = generateQuerySelector(selectedElement);
       selectedElement.style.border = "none";
       alert(qStr);
       selectedElement = null;
-      toggleSelectToFind()
+      toggleSelectToFind();
     }
+
     const hoveredElement = event.target;
     hoveredElement.style.border = "2px solid red";
 
@@ -155,10 +148,12 @@ function handleElementHover(event) {
 }
 
 document.addEventListener("mouseover", handleElementHover);
+
 document.addEventListener("mouseout", function (event) {
   // Code to remove the border
   const element = event.target;
   element.style.border = ""; // Remove the border when not hovering
 });
+
+
 checkPage();
-// setInterval(runningPage, 1 * 60 * 1000)

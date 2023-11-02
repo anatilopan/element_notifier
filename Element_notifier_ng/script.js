@@ -96,7 +96,7 @@ async function displayKeyValues(attrList = []) {
       const data = await chrome.storage.local.get("watchingAttributesStorage");
       attrList = data.watchingAttributesStorage || [];
     }
-    
+
     const keyValuesTable = document.getElementById('keyValuesTable');
 
     keyValuesTable.innerHTML = `
@@ -180,30 +180,10 @@ async function displayTimeValue(timevalue = '') {
   }
 }
 
-// // Function to set the timer
-// function setTimer() {
-//   const timevalue = parseInt(document.getElementById('timerField').value) || 60;
-//   if (timevalue !== '' && typeof (timevalue) == 'number') {
-//     if (timevalue < 60) {
-//       timevalue = 60;
-//     } else if (timevalue > 900) {
-//       timevalue = 900;
-//     }
-//     (async () => {
-//       const response = await chrome.runtime.sendMessage({ timevalue: timevalue });
-//       // do something with response here, not outside the function
-//       displayTimeValue(response.currentValue);
-//     })();
-
-//     // Clear the input field
-//     document.getElementById('timerField').value = timevalue;
-//   }
-// }
-
 async function setTimer() {
   const timerField = document.getElementById('timerField');
   let timevalue = parseInt(timerField.value) || 60;
-  
+
   if (isNaN(timevalue) || timevalue < 60) {
     timevalue = 60;
   } else if (timevalue > 900) {
